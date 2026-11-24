@@ -1,0 +1,36 @@
+{
+  "name": "claude-account-switcher",
+  "displayName": "Claude Account Switcher",
+  "description": "Switch between multiple Claude Code accounts (work / personal) and always see which one is active.",
+  "version": "0.1.0",
+  "publisher": "local",
+  "engines": { "vscode": "^1.80.0" },
+  "categories": ["Other"],
+  "main": "./extension.js",
+  "activationEvents": ["onStartupFinished"],
+  "contributes": {
+    "commands": [
+      { "command": "claudeAccounts.switch", "title": "Claude Accounts: Switch Account" },
+      { "command": "claudeAccounts.add", "title": "Claude Accounts: Add Account" },
+      { "command": "claudeAccounts.login", "title": "Claude Accounts: Log In (current account)" },
+      { "command": "claudeAccounts.remove", "title": "Claude Accounts: Remove Account" }
+    ],
+    "configuration": {
+      "title": "Claude Account Switcher",
+      "properties": {
+        "claudeAccounts.profiles": {
+          "type": "array",
+          "default": [],
+          "description": "Saved accounts. configDir is the CLAUDE_CONFIG_DIR for the account (empty = default ~/.claude).",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "configDir": { "type": "string" }
+            }
+          }
+        }
+      }
+    }
+  }
+}
